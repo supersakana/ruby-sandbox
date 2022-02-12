@@ -65,9 +65,15 @@ end
 puts hi_name('Zac')
 
 #Method that multiplies
-
 def multiply(a, b)
   a * b
 end
 
 puts multiply(3, 9)
+
+# Fixing Scream method
+def scream(words)
+  return words + "!!!!"
+end
+
+puts scream("Yippeee")
