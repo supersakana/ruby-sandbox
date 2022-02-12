@@ -45,4 +45,29 @@ else
     puts 'You cannot put a negative number'
 end
 
-    
+def even_odd(number)
+    unless number.is_a? Numeric
+      return "A number was not entered."
+    end
+  
+    if number % 2 == 0
+      "That is an even number."
+    else
+      "That is an odd number."
+    end
+  end
+
+# Method that takes name and prints message
+def hi_name(name)
+   'hi ' + name + ', you are welcome here.' 
+end
+
+puts hi_name('Zac')
+
+#Method that multiplies
+
+def multiply(a, b)
+  a * b
+end
+
+puts multiply(3, 9)
