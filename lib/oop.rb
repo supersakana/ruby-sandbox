@@ -18,10 +18,10 @@ class Humans
 end
 
 zac = Humans.new("Zac", 22)
-
 default = Humans.new
 
 # puts zac.age
 # puts zac.name
 # zac.speak("What's up big pimps")
+
 
