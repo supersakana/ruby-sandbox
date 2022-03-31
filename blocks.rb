@@ -12,12 +12,19 @@ Learning Outcomes
 - 'What does' yield 'do?'
 # Yield is a keyword that can be called inside a method to relinquish execution to the accompanying block. 
 - 'How do you pass arguments to a block from within a method'
+# with the pipe char ||
 - 'How do you check whether a block was actually passed in?'
+# block_passed? method
 - 'What is a proc'
+# A proc is a class that can encapsulate blocks
 - 'What is a lambda'
-- 'What is the difference between a proc ad block'
+# An object of a proc that functions almost the same way but with different use cases
+- 'What is the difference between a proc and block'
+# a block can be called anonymously within a method while a proc is declared and can be called by its name. 
 - 'What is the difference between a lambda and proc?'
-
+# Procs return from the current method while lambda return from the lambda itself
+# Procs do not care about amount of arguments, lambdas do
+# Defined with different syntax
 
 
 #  <-- Blocks -->
@@ -249,3 +256,57 @@ my_proc = Proc.new { puts "party" }
 
 cool_method(&my_proc)
 # => party
+
+#  <-- Closures -->
+# When you create a proc, it captures captures the current execution scope within it. This concept is sometimes called closure, means that a proc will carry with it values like local variables and methods from the context where it was defined.
+
+# if the variables change after the proc is created, the proc will always have the latest version
+def call_proc(my_proc)
+    count = 500
+    my_proc.call
+end
+  count   = 1
+  my_proc = Proc.new { puts count }
+  p call_proc(my_proc) # What does this print?
+# You would think that the output would be 500 but because of the closure effect. This happens because the proc is using the value of count form the place where the proc was defined, and that's outside of the method definition.
+
+#  <-- The Binding Class -->
+# When you create a binding object via the binding method, you are creating an anchor to this point in the code.
+
+# So every variable method and class defined at this point will be avalible later via this object, even if you are in a completely different scope. Below is an example
+
+def return_binding
+    foo = 100
+    binding
+  end
+  
+  # Foo is available thanks to the binding,
+  # even though we are outside of the method
+  # where it was defined.
+  puts return_binding.class
+  puts return_binding.eval('foo')
+  
+  # If you try to print foo directly you will get an error.
+  # The reason is that foo was never defined outside of the method.
+  puts foo
+
+  #  <-- 3 Practical Uses for Ruby Blocks -->
+# 1 timing with yeild "run around"
+def time
+    start = Time.Now
+    yeild
+    Time.now - start
+end
+# checks the amount of time it took to make this string. 
+time { "a" * 10000000 }
+
+
+# 2 lazy code, pass your own logic. customize logic
+{ a: 1 }.fetch(:a) # => 1
+
+# 3 callback on complete / on failure
+def request_http(&on_complete)
+    # 
+    on_complete.call
+end
+request_http { puts "Done!"}
