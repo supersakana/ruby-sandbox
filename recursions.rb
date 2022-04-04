@@ -109,7 +109,7 @@ puts "Heaviest rock is: #{rocks.inject { |max_rock, rock| max_rock > rock ? max_
 #  Recursion
 
 def rock_judger(rocks_arr)
-  if rocks_arr.length <= 2  # the base case
+  if rocks_arr.length <= 2 # the base case
     a = rocks_arr[0]
     b = rocks_arr[-1]
   else
@@ -119,3 +119,43 @@ def rock_judger(rocks_arr)
 
   a > b ? a : b
 end
+
+# <--- Factorial --->
+
+def factorial(n)
+  if n == 0
+    1
+  else
+    n * factorial(n - 1)
+  end
+end
+
+# my default way
+# def palendrome(string)
+#   string == string.reverse
+# end
+
+def palindrome(string)
+  if string.length == 1 || string.length.zero?
+    true
+  elsif string[0] == string[-1]
+    palindrome(string[1..-2])
+  else
+    false
+  end
+end
+
+# 99 bottles problem, recursive solution
+def bottles(n)
+  if n.zero?
+    puts 'No more bottles of beer on the wall, Go back to the store you alcoholic'
+  elsif n == 1
+    puts "#{n} more bottle of beer on the wall, take one down throw it around, no more bottles of beer on the wall"
+    bottles(n - 1)
+  else
+    puts "#{n} bottles of beer on the wall, #{n}, take one down throw it around, #{n - 1} bottles of beer on the wall"
+    bottles(n - 1)
+  end
+end
+
+bottles(20)
