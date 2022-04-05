@@ -101,7 +101,7 @@ rocks.each do |rock|
   max_rock = rock if max_rock < rock
 end
 
-puts "Heaviest rock is: #{max_rock}"
+# puts "Heaviest rock is: #{max_rock}"
 
 ## or with inject
 puts "Heaviest rock is: #{rocks.inject { |max_rock, rock| max_rock > rock ? max_rock : rock }}"
@@ -120,7 +120,7 @@ def rock_judger(rocks_arr)
   a > b ? a : b
 end
 
-# <--- Factorial --->
+# <--- Factorial  Quiz Problems--->
 
 def factorial(n)
   if n == 0
@@ -157,5 +157,51 @@ def bottles(n)
     bottles(n - 1)
   end
 end
-
 bottles(20)
+
+#  Fibbonacci
+def fib(n)
+  if n.zero?
+    0
+  elsif n == 1
+    1
+  else
+    fib(n - 1) + fib(n - 2)
+  end
+end
+# fib(5)
+
+# Flatten
+def flatten(array, result = [])
+  array.each do |element|
+    if element.kind_of?(Array
+      flatten(element, result)
+    else
+      result << element
+    end
+  end 
+  result
+end
+
+
+# Roman Numerables
+roman_mapping = {
+  1000 => "M",
+  900 => "CM",
+  500 => "D",
+  400 => "CD",
+  100 => "C",
+  90 => "XC",
+  50 => "L",
+  40 => "XL",
+  10 => "X",
+  9 => "IX",
+  5 => "V",
+  4 => "IV",
+  1 => "I"
+}
+
+def romanize(n, roman = "")
+  
+
+end
