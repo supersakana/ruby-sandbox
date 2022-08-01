@@ -39,7 +39,7 @@ describe Calculator do
     end
   end
 
-  describe 'divide' do
+  describe '#divide' do
     it 'returns the quotient between two numbers' do
       calculator = Calculator.new
       expect(calculator.divide(6, 3)).to eql(2)
